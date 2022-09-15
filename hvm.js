@@ -282,10 +282,10 @@ export default function boot_hvm(init, hvm) {
         var ctid = rt.get_ext(term);
         switch (ctid) {
           case rt.IO_DO_OUTPUT: {
-            var text = rt.at(rt.get_loc(term, 0n));
+            rt.normalize(rt.get_loc(term, 0n))
+            var text = rt.string(rt.readback(rt.get_loc(term, 0n)));
             var cont = rt.at(rt.get_loc(term, 1n));
-            var text = rt.readback(rt.get_loc(term, 0n));
-            await rt.do_output(rt.string(text));
+            await rt.do_output(text);
             var cont = rt.alloc_app(cont, rt.Num(0n));
             var done = await run_io(rt, cont);
             rt.clear(host, 1n);
