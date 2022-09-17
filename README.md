@@ -19,7 +19,7 @@ Examples
 import hvm from "hvm-js";
 
 // Instantiates an HVM runtime given a source code
-var rt = await hvm.runtime(`
+var rt = await hvm(`
   (U60.sum 0) = 0
   (U60.sum n) = (+ n (U60.sum (- n 1)))
 `);
